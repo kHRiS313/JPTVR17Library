@@ -5,14 +5,18 @@
  */
 package jptvr17library;
 
+import entity.Book;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import providers.BookProvider;
 
 /**
  *
  * @author Melnikov
  */
 public class App {
-
+    private List<Book> listBooks = new ArrayList<>();
     public void run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("---- Наша библиотека ----");
@@ -28,7 +32,21 @@ public class App {
             scanner.nextLine();
             switch (operation) {
                 case 1:
-                    
+//                    Book book = new Book(
+//                            1L, 
+//                            "Война и Мир", 
+//                            "Лев Толстой",
+//                            "123-123123", 
+//                            2010
+//                    );
+                    BookProvider bookProvider = new BookProvider();
+                    listBooks.add(bookProvider.createBook());
+                    for(int i=0; i < listBooks.size();i++){
+                       System.out.println(
+                            "Создана книга: " 
+                            + listBooks.get(i).getName()
+                        ); 
+                    }
                     break;
                 case 2:
                     
