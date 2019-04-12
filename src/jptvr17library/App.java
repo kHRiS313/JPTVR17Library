@@ -17,6 +17,12 @@ import providers.BookProvider;
  */
 public class App {
     private List<Book> listBooks = new ArrayList<>();
+    private StoregeInFile storegeInFile;
+    public App() {
+       storegeInFile = new StoregeInFile();
+       listBooks = storegeInFile.loadFromFile();
+    }
+    
     public void run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("---- Наша библиотека ----");
@@ -28,22 +34,17 @@ public class App {
             System.out.println("2. Создать читателя");
             System.out.println("3. Выдать книгу читателю");
             System.out.println("4. Читатель возвращает книгу");
+            System.out.println("5. Вывести список книг");
             operation = scanner.nextInt();
             scanner.nextLine();
             switch (operation) {
                 case 1:
-//                    Book book = new Book(
-//                            1L, 
-//                            "Война и Мир", 
-//                            "Лев Толстой",
-//                            "123-123123", 
-//                            2010
-//                    );
                     BookProvider bookProvider = new BookProvider();
                     listBooks.add(bookProvider.createBook());
+                    storegeInFile.saveBooks(listBooks);
                     for(int i=0; i < listBooks.size();i++){
                        System.out.println(
-                            "Создана книга: " 
+                            "Список книг: " 
                             + listBooks.get(i).getName()
                         ); 
                     }
@@ -56,6 +57,12 @@ public class App {
                     break;
                 case 4:
                     
+                    break;
+                case 5:
+                    System.out.println("Список книг: ");
+                    for(int i=0;i<listBooks.size();i++){
+                        System.out.println(listBooks.get(i));
+                    }
                     break;    
                 default:
                     System.out.println("Такое действие неподдерживается");

@@ -17,18 +17,39 @@ public class BookProvider {
     public Book createBook() {
         Book book = new Book();
         System.out.println("-------Создание книги--------");
-        System.out.print("Идентификатор книги: ");
-        book.setId(scanner.nextLong());
-        scanner.nextLine();
+        String inputNumber = "";
+        Long id = null;
+        boolean flag = true;
+        do{
+           System.out.print("Идентификатор книги: ");
+           inputNumber = scanner.nextLine();
+           try {
+              id=new Long(inputNumber);
+              flag = false;
+           }catch (Exception e){
+               System.out.println("Ошибка ввода!");
+           }
+        }while(flag);
+        book.setId(id);
         System.out.print("Название книги: ");
         book.setName(scanner.nextLine());
         System.out.print("Автор книги: ");
         book.setAuthor(scanner.nextLine());
         System.out.print("ISBN книги: ");
         book.setIsbn(scanner.nextLine());
-        System.out.print("Год издания книги: ");
-        book.setPublishedYear(scanner.nextInt());
-        scanner.nextLine();
+        int year=0;
+        flag=true;
+        do{
+           System.out.print("Год издания книги: ");
+           inputNumber = scanner.nextLine();
+           try {
+              year=new Integer(inputNumber);
+              flag = false;
+           }catch (Exception e){
+               System.out.println("Ошибка ввода!");
+           }
+        }while(flag);
+        book.setPublishedYear(year);
         return book;
     }
     

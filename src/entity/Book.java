@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.logging.Logger;
 
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Melnikov
  */
-public class Book {
+public class Book implements Serializable{
     private Long id;
     private String name;
     private String author;
